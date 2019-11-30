@@ -1,0 +1,17 @@
+FROM archlinux:latest
+
+RUN pacman --noconfirm -Sy \
+    base-devel \
+    git \
+    libaio \
+    keyutils \
+    scrypt \
+    libsodium \
+    liburcu \
+    zstd \
+    valgrind \
+    fuse3
+
+WORKDIR /build
+RUN git clone https://github.com/koverstreet/bcachefs-tools.git .
+RUN make -j5 && make install
