@@ -14,8 +14,7 @@ RUN apt-get update && apt-get install -y \
     libzstd-dev \
     uuid-dev \
     zlib1g-dev \
-    valgrind \
-    libfuse3-dev
+    valgrind
 
 WORKDIR /build
 RUN git clone https://github.com/koverstreet/bcachefs-tools.git .
