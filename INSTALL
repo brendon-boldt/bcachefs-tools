@@ -15,10 +15,16 @@ Dependencies:
  * zlib1g
  * valgrind
 
-On debian, you can install these with
+Debian (Bullseye or later) and Ubuntu (20.04 or later): you can install these with
     apt install -y pkg-config libaio-dev libblkid-dev libkeyutils-dev \
         liblz4-dev libscrypt-dev libsodium-dev liburcu-dev libzstd-dev \
         uuid-dev zlib1g-dev valgrind
+
+Fedora: install the "Development tools" group along with:
+    dnf install -y libaio-devel libsodium-devel \
+        libblkid-devel libzstd-devel zlib-devel userspace-rcu-devel \
+        lz4-devel libuuid-devel valgrind-devel keyutils-libs-devel \
+        libscrypt-devel findutils
 
 Then, just make && make install
 
@@ -29,14 +35,17 @@ Experimental fuse support is currently disabled by default. Fuse support is at
 an early stage and may corrupt your filesystem, so it should only be used for
 testing. To enable, you'll also need to add:
 
-* libfuse3
+* libfuse3 >= 3.7
 
-On debian:
+On Debian/Ubuntu (Bullseye/20.04 or later needed for libfuse >= 3.7):
     apt install -y libfuse3-dev
+
+On Fedora (32 or later needed for lbifuse >= 3.7):
+    dnf install -y fuse3-devel
 
 Then, make using the BCACHEFS_FUSE environment variable:
 
-BCACHEFS_FUSE=1 make &&
+BCACHEFS_FUSE=1 make && make install
 
 
 -- Tests --
@@ -50,6 +59,8 @@ On debian:
 Then, you can run the tests via:
 
     make check
+    # or if pytest has a different name
+    make check PYTEST=pytest
 
 Optionally, you may wish to run tests in parallel using python3-pytest-xdist:
 
