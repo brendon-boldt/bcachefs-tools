@@ -26,6 +26,10 @@ Fedora: install the "Development tools" group along with:
         lz4-devel libuuid-devel valgrind-devel keyutils-libs-devel \
         libscrypt-devel findutils
 
+Arch: install bcachefs-tools-git from the AUR.
+Or to build from source, install libscrypt from the AUR along with,
+    pacman -S base-devel libaio keyutils libsodium liburcu zstd valgrind
+
 Then, just make && make install
 
 
@@ -42,6 +46,9 @@ On Debian/Ubuntu (Bullseye/20.04 or later needed for libfuse >= 3.7):
 
 On Fedora (32 or later needed for lbifuse >= 3.7):
     dnf install -y fuse3-devel
+
+Arch:
+    pacman -S fuse3
 
 Then, make using the BCACHEFS_FUSE environment variable:
 
