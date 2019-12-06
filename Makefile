@@ -41,7 +41,7 @@ endif
 
 PKGCONFIG_LIBS="blkid uuid liburcu libsodium zlib liblz4 libzstd"
 ifdef BCACHEFS_FUSE
-	PKGCONFIG_LIBS+="fuse3"
+	PKGCONFIG_LIBS+="fuse3 >= 3.7"
 	CFLAGS+=-DBCACHEFS_FUSE
 endif
 
